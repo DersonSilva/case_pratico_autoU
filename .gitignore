@@ -1,0 +1,13 @@
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Configurações locais
+.env
+
+# Logs
+*.log
+
+# Configuração do sistema operacional
+.DS_Store
+Thumbs.db

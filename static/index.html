@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicação AutoU para análise inteligente de emails com IA"
+    />
+    <title>Email Inteligente - AutoU</title>
+    <link rel="icon" href="/static/favicon.ico" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Heroicons -->
+    <script
+      src="https://unpkg.com/heroicons@2.0.18/dist/outline.js"
+      defer
+    ></script>
+
+    <!-- Script da aplicação -->
+    <script src="/static/script.js" defer></script>
+  </head>
+
+  <body
+    class="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 font-sans p-4 relative"
+  >
+    <!-- imagem topo mobile/tablet, canto superior desktop -->
+    <img
+      src="/static/images/email-campaingn.png"
+      alt="Ilustração de email"
+      class="w-32 sm:w-40 md:w-56 lg:w-72 opacity-60 pointer-events-none mb-6 md:mb-0 md:absolute md:top-0 md:left-0 mx-auto"
+    />
+
+    <!-- formulário principal -->
+    <main
+      class="bg-gray-800 backdrop-blur-md p-10 rounded-3xl shadow-2xl w-full max-w-md border border-gray-700 md:mx-auto"
+    >
+      <header>
+        <h1
+          class="text-3xl font-extrabold mb-6 text-center bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+        >
+          Email Inteligente AutoU
+        </h1>
+      </header>
+
+      <form
+        id="emailForm"
+        class="space-y-5"
+        aria-label="Formulário de análise de email"
+      >
+        <textarea
+          name="text"
+          id="text"
+          placeholder="Cole o texto do email aqui ou faça upload do arquivo (.txt ou .pdf)"
+          class="w-full p-4 rounded-xl border-2 border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 shadow-inner resize-none h-32"
+          aria-label="Campo para colar ou escrever o texto do email"
+        ></textarea>
+
+        <div class="space-y-3 text-center">
+          <label
+            for="file"
+            class="w-full flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-gray-600 bg-gradient-to-r from-purple-700 to-violet-900 text-white font-semibold cursor-pointer hover:from-purple-600 hover:to-violet-400 transition-all duration-300 shadow-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7 2a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8l-6-6H7z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7 2v6h6"
+              />
+            </svg>
+            Escolher arquivo
+          </label>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="hidden"
+            accept=".txt,.pdf"
+          />
+
+          <div
+            id="fileStatus"
+            class="flex items-center justify-center gap-2 bg-green-600/20 text-green-400 px-4 py-2 rounded-full text-sm font-semibold hidden mx-auto w-fit"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 animate-pulse"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span id="fileName">Arquivo carregado</span>
+          </div>
+        </div>
+
+        <button
+          id="analyzeBtn"
+          type="submit"
+          class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-700 to-violet-500 hover:from-purple-600 hover:to-violet-400 text-white font-bold py-3 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+          aria-label="Analisar email"
+        >
+          <svg
+            id="btnPlane"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 -ml-1 transition-transform duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 10.5L21 3l-9 18-2.5-7L3 10.5z"
+            />
+          </svg>
+          <span id="btnText" class="text-base">Analisar</span>
+          <svg
+            id="btnSpinner"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 ml-1 hidden animate-spin"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <section
+        id="result"
+        class="mt-8 p-6 border-2 border-gray-700 rounded-2xl bg-gray-800 text-white shadow-inner hidden"
+        aria-live="polite"
+      >
+        <p class="text-lg">
+          <strong>Categoria:</strong>
+          <span id="category" class="font-semibold"></span>
+        </p>
+        <p class="text-lg mt-2">
+          <strong>Resposta sugerida:</strong>
+          <span id="response" class="font-semibold"></span>
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
