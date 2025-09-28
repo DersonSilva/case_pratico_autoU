@@ -38,6 +38,13 @@ function updateFilePreview() {
   }
 }
 
+// --- Função para resetar formulário ---
+function resetFormElements() {
+  form.reset(); // limpa textarea e file input
+  fileStatus.classList.add("hidden");
+  fileNameSpan.textContent = "";
+}
+
 // --- Função principal de envio ---
 async function handleSubmit(event) {
   event.preventDefault();
@@ -78,6 +85,7 @@ async function handleSubmit(event) {
     responseSpan.textContent = "Não foi possível conectar ao servidor.";
   } finally {
     setLoading(false);
+    resetFormElements(); // <- limpa textarea e arquivo após envio
   }
 }
 
