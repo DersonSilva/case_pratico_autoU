@@ -30,13 +30,14 @@ A aplicação suporta **upload de arquivos `.txt` e `.pdf`** ou a inserção dir
    - Fallback inteligente baseado em palavras-chave caso a API falhe.
 
 3. **Hospedagem**
+
    - A aplicação pode ser hospedada em qualquer serviço de nuvem gratuito (ex.: **Render, Vercel, Heroku**).
 
 ---
 
 ## Tecnologias Utilizadas
 
-- **Frontend:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS + TailwindCSS, JavaScript
 - **Backend:** Python, FastAPI, PyPDF2
 - **AI / NLP:** Hugging Face Transformers API
 - **Outros:** dotenv (variáveis de ambiente), CORS, Logging
@@ -45,9 +46,29 @@ A aplicação suporta **upload de arquivos `.txt` e `.pdf`** ou a inserção dir
 
 ## Como Executar Localmente
 
-1. Clone o repositório:
-
 ```bash
-git clone <link-do-repositorio>
-cd <nome-do-repositorio>
+# Clone o repositório
+git clone https://github.com/DersonSilva/case_pratico_autoU.git
+cd case_pratico_autou
+
+# Crie um ambiente virtual (opcional, mas recomendado)
+python -m venv venv
+# Linux / Mac
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Configure as variáveis de ambiente
+# Crie um arquivo .env na raiz do projeto e adicione:
+HF_TOKEN=seu_token_huggingface
+
+
+# Execute a aplicação
+uvicorn app:app --reload
+
+# Acesse no navegador
+http://127.0.0.1:8000/
 ```
